@@ -139,7 +139,7 @@ void Liberar(TLista *Lista)
         while(Aux != NULL)
         {
             Excluir(Lista, &Aux->item);
-            Aux = Aux->prox;
+            Aux = Aux->primeiro->prox;
         }
     }
     free(Lista->primeiro);*/
