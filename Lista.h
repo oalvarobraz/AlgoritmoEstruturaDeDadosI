@@ -48,4 +48,6 @@ TCelula* Pesquisar(TLista Lista, TProduto x);
 
 void Excluir(TLista *Lista, TProduto *x);
 
-#endif
+void Liberar(TLista *Lista);
+
+#endif // HEADER_LISTA
