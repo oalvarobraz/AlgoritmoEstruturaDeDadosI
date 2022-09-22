@@ -132,17 +132,24 @@ void Excluir(TLista *Lista, TProduto *x)
 
 void Liberar(TLista *Lista)
 {
-    if(Lista != NULL)
+    /*if(Vazia(*Lista) != 1)
     {
         TCelula *Aux;
-        Aux = Lista->ultimo->prox;
+        Aux = Lista->primeiro->prox;
         while(Aux != NULL)
         {
             Excluir(Lista, &Aux->item);
             Aux = Aux->prox;
         }
     }
-    Excluir(Lista, &Lista->primeiro->item);
+    free(Lista->primeiro);*/
+    
+    
+    while(!Vazia(*Lista){
+        Excluir(Lista, &Lista->primeiro->prox->item);
+    }
+    free(Lista->primeiro);
+    
 
     //enquanto a lista nao estiver vazia exclua, e no final devemos remover a cabeça utilização o lista->primeiro;
 }
