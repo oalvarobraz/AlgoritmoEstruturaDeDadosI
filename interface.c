@@ -71,7 +71,7 @@ void MENU(TLista *lista1){
             case 4:
 
                 Imprimir(*lista1);
-                
+
                 /**
                     Código para opção de menu Imprimir
                 */
