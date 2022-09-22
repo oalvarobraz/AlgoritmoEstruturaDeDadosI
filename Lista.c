@@ -38,22 +38,22 @@ void Inserir(TProduto x, TLista *Lista)
 void LerProduto(TProduto *x)
 {
 
-    printf("\nInforme um codigo: ");
+    printf("\n|| Informe um codigo: ");
     fflush(stdin);
 
     scanf("%d", &x->codigo);
 
-    printf("Informe o nome: ");
+    printf("|| Informe o nome: ");
     fflush(stdin);
 
     fgets(x->nome,100,stdin);
 
-    printf("Informe a quantidade: ");
+    printf("|| Informe a quantidade: ");
     fflush(stdin);
 
     scanf("%d", &x->quantidade);
 
-    printf("nforme o preco: ");
+    printf("|| Informe o preco: ");
     fflush(stdin);
 
     scanf("%f", &x->preco);
@@ -64,10 +64,10 @@ void LerProduto(TProduto *x)
 void ImprimirProduto(TProduto *x)
 {
 
-    printf("\n(1) Codigo: %d\n", x->codigo);
-    printf("(2) Nome: %s", x->nome);
-    printf("(3) Quantidade: %d\n", x->quantidade);
-    printf("(4) Preco: %.2f\n", x->preco);
+    printf("\n|| Codigo: %d\n", x->codigo);
+    printf("|| Nome: %s", x->nome);
+    printf("|| Quantidade: %d\n", x->quantidade);
+    printf("|| Preco: %.2f\n", x->preco);
 }
 
 void Imprimir(TLista Lista)
@@ -81,6 +81,7 @@ void Imprimir(TLista Lista)
         ImprimirProduto(&Aux->item);
         Aux = Aux->prox;
     }
+
 }
 
 int Pesquisar2(TLista Lista, TProduto x)
@@ -126,7 +127,22 @@ void Excluir(TLista *Lista, TProduto *x)
         Lista->tamanho--;
     }
     else
-    {
         x->codigo = -1;
+}
+
+void Liberar(TLista *Lista)
+{
+    if(Lista != NULL)
+    {
+        TCelula *Aux;
+        Aux = Lista->ultimo->prox;
+        while(Aux != NULL)
+        {
+            Excluir(Lista, &Aux->item);
+            Aux = Aux->prox;
+        }
     }
+    Excluir(Lista, &Lista->primeiro->item);
+
+    //enquanto a lista nao estiver vazia exclua, e no final devemos remover a cabeça utilização o lista->primeiro;
 }
