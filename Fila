@@ -1,0 +1,33 @@
+typedef struct item{
+    int codigo;
+} TProduto;
+
+typedef struct celula{
+    TProduto item;
+    struct celula* prox;
+} TCelula;
+
+typedef struct Fila{
+    TCelula *frente;
+    TCelula *tras;
+    int tamanho;
+} TFila;
+
+void FFVazia(TFila *Fila){
+    Fila->frente = (TCelula*) malloc(sizeof(TCelula));
+    Fila->tras = Fila->frente;
+    Fila->tras->prox = NULL;
+    Fila->tamanho = 0;
+}
+
+void INQUEUE(TFila *Fila, TProduto x){
+    Fila->tras->prox = (TCelula*) malloc(sizeof(TCelula));
+    Fila->tras = Fila->tras->prox;
+    Fila->tras->item = x;
+    Fila->tras->prox = NULL;
+    Fila->tamanho++;
+}
+
+void DEQUEUE(TFila *Fila, TProduto *x){
+    
+}
