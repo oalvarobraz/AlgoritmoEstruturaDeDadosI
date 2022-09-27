@@ -1,3 +1,4 @@
+
 int EhIgual(TLista *Lista1,TLista *Lista2){
     if(!Vazia(*Lista1) && !Vazia(*Lista2)) {
         if(GetTamanho(*Lista1) == GetTamanho(*Lista2)){
@@ -41,6 +42,7 @@ void DividirLista(TLista *Lista1, TLista *Lista2, TLista *Lista3){
         int i=0;
         TCelula *Aux;
         Aux = Lista1->primeiro->prox;
+
         while (i<(GetTamanho(*Lista1)/2)){
             Inserir(Aux->item,Lista2);
             Aux = Aux->prox;
@@ -119,6 +121,6 @@ void RemoverProdutoSelecionado(TLista *Lista1, int i){
             Aux = Aux->prox;
         }
     } else
-        printf("\n|| INCAPAZ DE EXLUIR!\n-> A lista nao possui %d celulas!\n", i);
+        printf("\n|| INCAPAZ DE EXLUIR!\n-> A lista nao posuui %d celulas!\n", i);
 
 }
