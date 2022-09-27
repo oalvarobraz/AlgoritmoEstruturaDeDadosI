@@ -1,0 +1,56 @@
+
+int EhIgual(TLista *Lista1,TLista *Lista2){
+    if(!Vazia(*Lista1) && !Vazia(*Lista2)) {
+        if(GetTamanho(*Lista1) == GetTamanho(*Lista2)){
+            TCelula *Aux1, *Aux2;
+            Aux1 = Lista1->primeiro->prox;
+            Aux2 = Lista1->primeiro->prox;
+            while (Aux1 != NULL){
+                if(Aux1 == Aux2){
+                    Aux1 = Aux1->prox;
+                    Aux2 = Aux2->prox;
+                } else
+                    return 0;
+            }
+            return 1;
+        }
+        return 0;
+    }
+    return -1;
+}
+
+void Concatenar(TLista *Lista1, TLista *Lista2, TLista *Lista3){
+    if(!Vazia(*Lista1) && !Vazia(*Lista2)){
+        TCelula *Aux1, *Aux2;
+        Aux1 = Lista1->primeiro->prox;
+        Aux2 = Lista2->primeiro->prox;
+        while (Aux1 != NULL){
+            Inserir(Aux1->item, Lista3);
+            Aux1 = Aux1->prox;
+        }
+        while (Aux2 != NULL){
+            Inserir(Aux2->item, Lista3);
+            Aux2 = Aux2->prox;
+        }
+    }
+}
+
+void DividirLista(TLista *Lista1, TLista *Lista2, TLista *Lista3){
+    if(!Vazia(*Lista1)){
+        int i=0;
+        TCelula *Aux;
+        Aux = Lista1->primeiro->prox;
+        while (i<(GetTamanho(*Lista1)/2)){
+            Inserir(Aux->item,Lista2);
+            Aux = Aux->prox;
+            i++;
+        }
+        i=(GetTamanho(*Lista1)/2);
+        while (i< GetTamanho(*Lista1) || Aux != NULL){
+            Inserir(Aux->item,Lista3);
+            Aux = Aux->prox;
+            i++;
+        }
+
+    }
+}
