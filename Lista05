@@ -81,3 +81,25 @@ void InserirOrdemCrescente(TLista *Lista1, TProduto item){
         }
     }
 }
+
+
+void ImprimirProdutoSelecionado(TLista *Lista1, int i){
+    if(i == 0){
+        printf("|| A celula cabeca nao possui informacoes!\n");
+    }else if(i< GetTamanho(*Lista1)){
+        TCelula *Aux;
+        int j;
+        j=1;
+        Aux = Lista1->primeiro;
+        while (Aux->prox != NULL){
+            if(j==i){
+                printf("\t\t\t|| Imprimindo produto da lista ||\n");
+                ImprimirProduto(&Aux->prox->item);
+                return;
+            }
+            j++;
+            Aux = Aux->prox;
+        }
+    } else
+        printf("|| A lista nao possui %d celulas!\n", i);
+}
