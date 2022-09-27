@@ -119,6 +119,6 @@ void RemoverProdutoSelecionado(TLista *Lista1, int i){
             Aux = Aux->prox;
         }
     } else
-        printf("\n|| INCAPAZ DE EXLUIR!\n-> A lista nao posuui %d celulas!\n", i);
+        printf("\n|| INCAPAZ DE EXLUIR!\n-> A lista nao possui %d celulas!\n", i);
 
 }
