@@ -1,4 +1,3 @@
-
 int EhIgual(TLista *Lista1,TLista *Lista2){
     if(!Vazia(*Lista1) && !Vazia(*Lista2)) {
         if(GetTamanho(*Lista1) == GetTamanho(*Lista2)){
@@ -19,19 +18,21 @@ int EhIgual(TLista *Lista1,TLista *Lista2){
     return -1;
 }
 
-void Concatenar(TLista *Lista1, TLista *Lista2, TLista *Lista3){
+void Concatenar(TLista *Lista1, TLista *Lista2){
     if(!Vazia(*Lista1) && !Vazia(*Lista2)){
-        TCelula *Aux1, *Aux2;
-        Aux1 = Lista1->primeiro->prox;
+        //TCelula *Aux1;
+        TCelula *Aux2;
+        //Aux1 = Lista1->primeiro->prox;
         Aux2 = Lista2->primeiro->prox;
-        while (Aux1 != NULL){
-            Inserir(Aux1->item, Lista3);
-            Aux1 = Aux1->prox;
-        }
+//        while (Aux1 != NULL){
+//            Inserir(Aux1->item, Lista3);
+//            Aux1 = Aux1->prox;
+//        }
         while (Aux2 != NULL){
-            Inserir(Aux2->item, Lista3);
+            Inserir(Aux2->item, Lista1);
             Aux2 = Aux2->prox;
         }
+
     }
 }
 
@@ -51,7 +52,6 @@ void DividirLista(TLista *Lista1, TLista *Lista2, TLista *Lista3){
             Aux = Aux->prox;
             i++;
         }
-
     }
 }
 
@@ -59,16 +59,14 @@ void InserirOrdemCrescente(TLista *Lista1, TProduto item){
     TCelula *Aux;
     TCelula *Aux1;
     Aux = Lista1->ultimo;
-    if(Vazia(*Lista1) || Aux->item.codigo <= item.codigo){
+    if(Vazia(*Lista1)){
         Inserir(item,Lista1);
-    }
-//    if(Aux->item.codigo <= item.codigo){
-//        Inserir(item, Lista1);
-//    }
-    else{
+    }else if(Aux->item.codigo <= item.codigo) {
+        Inserir(item, Lista1);
+    }else{
         Aux = Lista1->primeiro;
         while (Aux->prox != NULL){
-            if(item.codigo <= Aux->item.codigo){
+            if(item.codigo <= Aux->prox->item.codigo){
                 Aux1 = Aux->prox;
                 Aux->prox = (TCelula*) malloc(sizeof(TCelula));
                 Aux = Aux->prox;
@@ -81,7 +79,6 @@ void InserirOrdemCrescente(TLista *Lista1, TProduto item){
         }
     }
 }
-
 
 void ImprimirProdutoSelecionado(TLista *Lista1, int i){
     if(i == 0){
@@ -101,5 +98,27 @@ void ImprimirProdutoSelecionado(TLista *Lista1, int i){
             Aux = Aux->prox;
         }
     } else
-        printf("|| A lista nao possui %d celulas!\n", i);
+        printf("\n|| INCAPAZ DE IMPRIMIR !\n-> A lista nao possui %d celulas!\n", i);
+}
+
+
+void RemoverProdutoSelecionado(TLista *Lista1, int i){
+    if(i == 0){
+        printf("|| ERRO: Nao eh permitido excluir a cabeca!\n");
+    }else if(i< GetTamanho(*Lista1)){
+        TCelula *Aux;
+        int j;
+        j=1;
+        Aux = Lista1->primeiro;
+        while (Aux->prox != NULL){
+            if(j==i){
+                Excluir(Lista1,&Aux->prox->item);
+                return;
+            }
+            j++;
+            Aux = Aux->prox;
+        }
+    } else
+        printf("\n|| INCAPAZ DE EXLUIR!\n-> A lista nao posuui %d celulas!\n", i);
+
 }
