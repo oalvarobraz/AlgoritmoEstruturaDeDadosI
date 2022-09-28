@@ -1,0 +1,151 @@
+
+int EhIgual(TLista *Lista1,TLista *Lista2){
+    if(!Vazia(*Lista1) && !Vazia(*Lista2)) {
+        if(GetTamanho(*Lista1) == GetTamanho(*Lista2)){
+            TCelula *Aux1, *Aux2;
+            Aux1 = Lista1->primeiro->prox;
+            Aux2 = Lista1->primeiro->prox;
+            while (Aux1 != NULL){
+                if(Aux1 == Aux2){
+                    Aux1 = Aux1->prox;
+                    Aux2 = Aux2->prox;
+                } else
+                    return 0;
+            }
+            return 1;
+        }
+        return 0;
+    }
+    return -1;
+}
+
+void Concatenar(TLista *Lista1, TLista *Lista2){
+    if(!Vazia(*Lista1) && !Vazia(*Lista2)){
+        //TCelula *Aux1;
+        TCelula *Aux2;
+        //Aux1 = Lista1->primeiro->prox;
+        Aux2 = Lista2->primeiro->prox;
+//        while (Aux1 != NULL){
+//            Inserir(Aux1->item, Lista3);
+//            Aux1 = Aux1->prox;
+//        }
+        while (Aux2 != NULL){
+            Inserir(Aux2->item, Lista1);
+            Aux2 = Aux2->prox;
+        }
+
+    }
+}
+
+void DividirLista(TLista *Lista1, TLista *Lista2, TLista *Lista3){
+    if(!Vazia(*Lista1)){
+        int i=0;
+        TCelula *Aux;
+        Aux = Lista1->primeiro->prox;
+
+        while (i<(GetTamanho(*Lista1)/2)){
+            Inserir(Aux->item,Lista2);
+            Aux = Aux->prox;
+            i++;
+        }
+        i=(GetTamanho(*Lista1)/2);
+        while (i< GetTamanho(*Lista1) || Aux != NULL){
+            Inserir(Aux->item,Lista3);
+            Aux = Aux->prox;
+            i++;
+        }
+    }
+}
+
+void InserirOrdemCrescente2(TLista *Lista1, TProduto item){
+    TCelula *Aux;
+    TCelula *Aux1;
+    Aux = Lista1->ultimo;
+    if(Vazia(*Lista1)){
+        Inserir(item,Lista1);
+    }else if(Aux->item.codigo <= item.codigo) {
+        Inserir(item, Lista1);
+    }else{
+        Aux = Lista1->primeiro;
+        while (Aux->prox != NULL){
+            if(item.codigo <= Aux->prox->item.codigo){
+                Aux1 = Aux->prox;
+                Aux->prox = (TCelula*) malloc(sizeof(TCelula));
+                Aux = Aux->prox;
+                Aux->item = item;
+                Aux->prox = Aux1;
+                Lista1->tamanho++;
+                return;
+            }
+            Aux = Aux->prox;
+        }
+    }
+}
+
+void InserirOrdemCrescente(TLista *Lista1, TProduto item){
+    TCelula *Aux;
+    TCelula *Aux1;
+    Aux = Lista1->ultimo;
+    if(Vazia(*Lista1)){
+        Inserir(item,Lista1);
+    }else if(strcmp(item.nome,Aux->item.nome) > 0) {
+        Inserir(item, Lista1);
+    }else{
+        Aux = Lista1->primeiro;
+        while (Aux->prox != NULL){
+            if(strcmp(item.nome, Aux->prox->item.nome) <=0){
+                Aux1 = Aux->prox;
+                Aux->prox = (TCelula*) malloc(sizeof(TCelula));
+                Aux = Aux->prox;
+                Aux->item = item;
+                Aux->prox = Aux1;
+                Lista1->tamanho++;
+                return;
+            }
+            Aux = Aux->prox;
+        }
+    }
+}
+
+void ImprimirProdutoSelecionado(TLista *Lista1, int i){
+    if(i == 0){
+        printf("|| A celula cabeca nao possui informacoes!\n");
+    }else if(i< GetTamanho(*Lista1)){
+        TCelula *Aux;
+        int j;
+        j=1;
+        Aux = Lista1->primeiro;
+        while (Aux->prox != NULL){
+            if(j==i){
+                printf("\t\t\t|| Imprimindo produto da lista ||\n");
+                ImprimirProduto(&Aux->prox->item);
+                return;
+            }
+            j++;
+            Aux = Aux->prox;
+        }
+    } else
+        printf("\n|| INCAPAZ DE IMPRIMIR !\n-> A lista nao possui %d celulas!\n", i);
+}
+
+
+void RemoverProdutoSelecionado(TLista *Lista1, int i){
+    if(i == 0){
+        printf("|| ERRO: Nao eh permitido excluir a cabeca!\n");
+    }else if(i< GetTamanho(*Lista1)){
+        TCelula *Aux;
+        int j;
+        j=1;
+        Aux = Lista1->primeiro;
+        while (Aux->prox != NULL){
+            if(j==i){
+                Excluir(Lista1,&Aux->prox->item);
+                return;
+            }
+            j++;
+            Aux = Aux->prox;
+        }
+    } else
+        printf("\n|| INCAPAZ DE EXLUIR!\n-> A lista nao posuui %d celulas!\n", i);
+
+}
