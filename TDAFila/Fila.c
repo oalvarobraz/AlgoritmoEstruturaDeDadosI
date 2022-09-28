@@ -9,7 +9,7 @@ void FFVazia(TFila *Fila){
     Fila->tamanho = 0;
 }
 
-void Vazia(TFila Fila){
+int Vazia(TFila Fila){
   return (Fila.primeiro == Fila.ultimo);
 }
 
