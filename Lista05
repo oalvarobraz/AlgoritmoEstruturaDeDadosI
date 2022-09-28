@@ -57,7 +57,7 @@ void DividirLista(TLista *Lista1, TLista *Lista2, TLista *Lista3){
     }
 }
 
-void InserirOrdemCrescente(TLista *Lista1, TProduto item){
+void InserirOrdemCrescente2(TLista *Lista1, TProduto item){
     TCelula *Aux;
     TCelula *Aux1;
     Aux = Lista1->ultimo;
@@ -69,6 +69,31 @@ void InserirOrdemCrescente(TLista *Lista1, TProduto item){
         Aux = Lista1->primeiro;
         while (Aux->prox != NULL){
             if(item.codigo <= Aux->prox->item.codigo){
+                Aux1 = Aux->prox;
+                Aux->prox = (TCelula*) malloc(sizeof(TCelula));
+                Aux = Aux->prox;
+                Aux->item = item;
+                Aux->prox = Aux1;
+                Lista1->tamanho++;
+                return;
+            }
+            Aux = Aux->prox;
+        }
+    }
+}
+
+void InserirOrdemCrescente(TLista *Lista1, TProduto item){
+    TCelula *Aux;
+    TCelula *Aux1;
+    Aux = Lista1->ultimo;
+    if(Vazia(*Lista1)){
+        Inserir(item,Lista1);
+    }else if(strcmp(item.nome,Aux->item.nome) > 0) {
+        Inserir(item, Lista1);
+    }else{
+        Aux = Lista1->primeiro;
+        while (Aux->prox != NULL){
+            if(strcmp(item.nome, Aux->prox->item.nome) <=0){
                 Aux1 = Aux->prox;
                 Aux->prox = (TCelula*) malloc(sizeof(TCelula));
                 Aux = Aux->prox;
