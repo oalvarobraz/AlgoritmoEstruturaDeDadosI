@@ -7,11 +7,11 @@ void MSG_MENU( )
 {
     //system("clear");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU <<<<<<<<<<<<<<<<<<<<<<<<");
-    printf("\n\n\t1. ENFILEIRAR");
-    printf("  \n\t2. PESQUISAR");
-    printf("  \n\t3. DESENFILEIRAR");
-    printf("  \n\t4. IMPRIMIR");
-    printf("  \n\t5. SAIR");
+    printf("\n\n\t(1) ENFILEIRAR");
+    printf("  \n\t(2) PESQUISAR");
+    printf("  \n\t(3) DESENFILEIRAR");
+    printf("  \n\t(4) IMPRIMIR");
+    printf("  \n\t(5) SAIR");
 }
 
 void MENU(TFila *fila){
@@ -20,7 +20,7 @@ void MENU(TFila *fila){
     do
     {
         MSG_MENU();
-        printf("\n\n-> Digite uma opcao: ");
+        printf("\n\n|| Digite uma opcao: ");
         fflush(stdin);
         scanf("%d", &opcao);
         switch(opcao)
@@ -32,20 +32,25 @@ void MENU(TFila *fila){
 
                 break;
             case 2:
-                printf("\n-> Informe o codigo que voce deseja pesquisar: ");
+                printf("\n|| Informe o codigo que voce deseja pesquisar: ");
                 fflush(stdin);
                 scanf("%d", &produto.codigo);
 
                 TProduto y = Pesquisar(fila,produto);
                 if(y.codigo != 0)
-                    printf("\n-> O produto esta na fila!");
+                    printf("\n| O produto esta na fila!");
                 else
-                    printf("\n-> O produto nao esta na fila!");
+                    printf("\n| O produto nao esta na fila!");
 
                 break;
             case 3:
                 Desenfileirar(fila,&produto);
-
+                
+                if(produto.codigo == -1)
+                    printf("\n| ERRO: O produto nao esta na fila!");
+                else 
+                    printf("\n| Produto escluido com sucesso!");
+                
                 break;
             case 4:
                 printf("\n\t\t|| IMPRIMINDO FILA ||\n");
