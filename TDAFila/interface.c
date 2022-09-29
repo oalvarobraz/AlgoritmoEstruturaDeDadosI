@@ -37,7 +37,7 @@ void MENU(TFila *fila){
                 scanf("%d", &produto.codigo);
 
                 TProduto y = Pesquisar(fila,produto);
-                if(y.codigo != 0)
+                if(y.codigo == produto.codigo)
                     printf("\n| O produto esta na fila!");
                 else
                     printf("\n| O produto nao esta na fila!");
@@ -45,16 +45,13 @@ void MENU(TFila *fila){
                 break;
             case 3:
                 Desenfileirar(fila,&produto);
-                
-                if(produto.codigo == -1)
-                    printf("\n| ERRO: O produto nao esta na fila!");
-                else 
-                    printf("\n| Produto escluido com sucesso!");
-                
+
+                ImprimirProduto(produto);
+
                 break;
             case 4:
                 printf("\n\t\t|| IMPRIMINDO FILA ||\n");
-                Imprimir2(fila);
+                Imprimir(fila);
 
                 break;
             case 5:
