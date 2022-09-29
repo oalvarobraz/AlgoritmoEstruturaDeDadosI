@@ -35,9 +35,9 @@ int Vazia(TFila Fila);
 
 int GetTamanho(TFila Fila);
 
-void INQUEUE(TFila *Fila, TProduto x);
+void Enfileirar(TProduto x,TFila *Fila);
 
-void DEQUEUE(TFila *Fila, TProduto *x);
+void Desenfileirar(TFila *Fila, TProduto *x);
 
 void LerProduto(TProduto *x);
 
