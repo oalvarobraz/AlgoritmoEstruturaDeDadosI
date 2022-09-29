@@ -33,8 +33,7 @@ void Enfileirar (TProduto x, TFila *Fila)
 
 void Desenfileirar (TFila *Fila, TProduto *x)
 {
-    if(!Vazia(*Fila))
-    {
+    if(!Vazia(*Fila)){
         TCelula *Aux;
         Aux = Fila->frente->prox;
         Fila->frente->prox = Aux->prox;
@@ -49,19 +48,19 @@ void Desenfileirar (TFila *Fila, TProduto *x)
 
 void LerProduto(TProduto *x)
 {
-    printf("-> Digite codigo do produto: ");
+    printf("|| Informe um codigo: ");
     fflush(stdin);
     scanf("%d", &x->codigo);
 
-    printf("-> Digite o nome do produto: ");
+    printf("|| Informe o nome: ");
     fflush(stdin);
     fgets(x->nome,100,stdin);
 
-    printf("-> Digite a quantidade: ");
+    printf("|| Informe a quantidade: ");
     fflush(stdin);
     scanf("%d", &x->quantidade);
 
-    printf("-> Digite o preco: ");
+    printf("|| Informe o preco: ");
     fflush(stdin);
     scanf("%d", &x->preco);
 }
@@ -74,15 +73,6 @@ void ImprimirProduto(TProduto x)
     printf("|| Preco: %d\n\n", x.preco);
 }
 
-void Liberar (TFila *Fila)
-{
-    TProduto x;
-    while (!Vazia(*Fila))
-    {
-        Desenfileirar(Fila, &x);
-    }
-    free(Fila->frente);
-}
 
 void Imprimir1 (TFila *Fila1)
 {
@@ -103,7 +93,7 @@ void Imprimir1 (TFila *Fila1)
     Liberar(&Fila2);
 }
 
-void Imprimir2 (TFila *Fila)
+void Imprimir (TFila *Fila)
 {
     int n = Tamanho(*Fila);
     TProduto x;
@@ -127,4 +117,30 @@ TProduto Pesquisar (TFila *Fila1, TProduto x) {
         n--;
     }
     return aux;
+}
+
+
+TProduto Pesquisar2(TFila *Fila, TProduto x){
+    TProduto y;
+    int n = GetTamanho(*Fila);
+    while (n!=0){
+        TCelula *Aux;
+        Aux = Fila->frente->prox;
+        Desenfileirar(Fila, &y);
+        if(Aux->item.codigo == x.codigo){
+            return Aux->item;
+        }
+        Enfileirar(y,Fila);
+        n--;
+    }
+}
+
+void Liberar (TFila *Fila)
+{
+    TProduto item;
+    while (!Vazia(*Fila))
+    {
+        Desenfileirar(Fila, &item);
+    }
+    free(Fila->frente);
 }
