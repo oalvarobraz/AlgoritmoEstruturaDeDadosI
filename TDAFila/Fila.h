@@ -1,15 +1,14 @@
 #ifndef HEADER_FILA
 #define HEADER_FILA
 
-#include <stdio.h>
+
 #include <stdlib.h>
+#include <stdio.h>
+
 
 typedef struct
 {
-    char nome[100];
     int codigo;
-    int quantidade;
-    float preco;
 } TProduto;
 
 typedef struct celula
@@ -39,10 +38,16 @@ void DEQUEUE(TFila *Fila, TProduto *x);
 
 void LerProduto(TProduto *x);
 
-void ImprimirProduto(TProduto *x);
+void ImprimirProduto(TProduto x);
 
-void Imprimir(TLista Lista);
+void Imprimir(TFila *Fila);
 
-void Imprimir2(TLista Lista);
+void Imprimir2(TFila *Fila);
+
+TProduto Pesquisar(TFila *Fila, TProduto x);
+
+TProduto Pesquisar2(TFila *Fila, TProduto x);
+
+void Liberar(TFila *Fila);
 
 #endif // HEADER_FILA
