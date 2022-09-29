@@ -1,14 +1,17 @@
-#ifndef HEADER_FILA
-#define HEADER_FILA
+#ifndef FILA_H_INCLUDED
+#define FILA_H_INCLUDED
 
 
 #include <stdlib.h>
 #include <stdio.h>
 
 
-typedef struct
+typedef struct item
 {
     int codigo;
+    char nome[100];
+    int quantidade;
+    float preco;
 } TProduto;
 
 typedef struct celula
@@ -18,7 +21,7 @@ typedef struct celula
     struct celula* prox;
 } TCelula;
 
-typedef struct
+typedef struct fila
 {
 
     TCelula* frente;
@@ -50,4 +53,4 @@ TProduto Pesquisar2(TFila *Fila, TProduto x);
 
 void Liberar(TFila *Fila);
 
-#endif // HEADER_FILA
+#endif // FILA_H_INCLUDED
