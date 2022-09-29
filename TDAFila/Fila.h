@@ -43,9 +43,9 @@ void LerProduto(TProduto *x);
 
 void ImprimirProduto(TProduto x);
 
-void Imprimir(TFila *Fila);
+void Imprimir1(TFila *Fila);
 
-void Imprimir2(TFila *Fila);
+void Imprimir(TFila *Fila);
 
 TProduto Pesquisar(TFila *Fila, TProduto x);
 
