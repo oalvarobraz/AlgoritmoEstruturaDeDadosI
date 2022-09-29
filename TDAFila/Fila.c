@@ -112,8 +112,6 @@ TProduto Pesquisar (TFila *Fila1, TProduto Item) {
         Desenfileirar(Fila1, &x);
         if(x.codigo == Item.codigo)
             Aux.codigo = Item.codigo;
-        else
-            Aux.codigo = 0;
         Enfileirar (x, Fila1);
         n--;
     }
