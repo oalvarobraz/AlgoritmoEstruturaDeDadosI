@@ -42,8 +42,9 @@ void DividirLista(TLista *Lista1, TLista *Lista2, TLista *Lista3){
         int i=0;
         TCelula *Aux;
         Aux = Lista1->primeiro->prox;
-
-        while (i<(GetTamanho(*Lista1)/2)){
+        
+    
+        while (i<((GetTamanho(*Lista1)+1)/2)){
             Inserir(Aux->item,Lista2);
             Aux = Aux->prox;
             i++;
