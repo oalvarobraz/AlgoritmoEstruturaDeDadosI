@@ -28,7 +28,7 @@ void MENU(TFila *fila){
             case 1:
                 printf("\n\t___________LENDO O PRODUTO___________\n");
                 LerProduto(&produto);
-                INQUEUE(fila,produto);
+                Enfileirar(produto,fila);
 
                 break;
             case 2:
@@ -44,12 +44,12 @@ void MENU(TFila *fila){
 
                 break;
             case 3:
-                DEQUEUE(fila,&produto);
+                Desenfileirar(fila,&produto);
 
                 break;
             case 4:
-                printf("\t\t|| IMPRIMINDO FILA ||\n");
-                Imprimir(fila);
+                printf("\n\t\t|| IMPRIMINDO FILA ||\n");
+                Imprimir2(fila);
 
                 break;
             case 5:
