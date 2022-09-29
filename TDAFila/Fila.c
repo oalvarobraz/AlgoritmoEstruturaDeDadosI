@@ -122,16 +122,17 @@ TProduto Pesquisar (TFila *Fila1, TProduto Item) {
 TProduto Pesquisar2(TFila *Fila, TProduto x){
     int n = GetTamanho(*Fila);
     TProduto y;
+    TCelula *Aux;
     while (n!=0){
-        TCelula *Aux;
         Aux = Fila->frente->prox;
         Desenfileirar(Fila, &y);
         if(Aux->item.codigo == x.codigo){
-            return Aux->item;
+            y.codigo == x.codigo;
         }
         Enfileirar(y,Fila);
         n--;
     }
+    return y;
 }
 
 void Liberar (TFila *Fila)
