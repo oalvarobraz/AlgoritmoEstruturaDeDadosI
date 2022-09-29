@@ -17,7 +17,7 @@ int Vazia(TFila Fila)
     return (Fila.frente == Fila.tras);
 }
 
-int Tamanho(TFila Fila)
+int GetTamanho(TFila Fila)
 {
     return Fila.tamanho;
 }
