@@ -42,8 +42,7 @@ void Desenfileirar (TFila *Fila, TProduto *x)
         if (Fila->frente->prox == NULL)
             Fila->tras = Fila->frente;
         Fila->tamanho--;
-    } else
-        x->codigo = -1;
+    }
 }
 
 void LerProduto(TProduto *x)
@@ -62,7 +61,7 @@ void LerProduto(TProduto *x)
 
     printf("|| Informe o preco: ");
     fflush(stdin);
-    scanf("%d", &x->preco);
+    scanf("%f", &x->preco);
 }
 
 void ImprimirProduto(TProduto x)
@@ -70,7 +69,7 @@ void ImprimirProduto(TProduto x)
     printf("\n|| Codigo: %d\n", x.codigo);
     printf("|| Nome: %s", x.nome);
     printf("|| Quantidade: %d\n", x.quantidade);
-    printf("|| Preco: %d\n\n", x.preco);
+    printf("|| Preco: %.2f\n\n", x.preco);
 }
 
 
@@ -95,7 +94,7 @@ void Imprimir1 (TFila *Fila1)
 
 void Imprimir (TFila *Fila)
 {
-    int n = Tamanho(*Fila);
+    int n = GetTamanho(*Fila);
     TProduto x;
     while (n != 0)
     {
@@ -106,23 +105,25 @@ void Imprimir (TFila *Fila)
     }
 }
 
-TProduto Pesquisar (TFila *Fila1, TProduto x) {
-    int n = Tamanho(*Fila1);
-    TProduto y, aux;
+TProduto Pesquisar (TFila *Fila1, TProduto Item) {
+    TProduto x, Aux;
+    int n = GetTamanho(*Fila1);
     while (n != 0) {
         Desenfileirar(Fila1, &x);
-        if(y.codigo == x.codigo)
-            aux.codigo = x.codigo;
-        Enfileirar (y, Fila1);
+        if(x.codigo == Item.codigo)
+            Aux.codigo = Item.codigo;
+        else
+            Aux.codigo = 0;
+        Enfileirar (x, Fila1);
         n--;
     }
-    return aux;
+    return Aux;
 }
 
 
 TProduto Pesquisar2(TFila *Fila, TProduto x){
-    TProduto y;
     int n = GetTamanho(*Fila);
+    TProduto y;
     while (n!=0){
         TCelula *Aux;
         Aux = Fila->frente->prox;
