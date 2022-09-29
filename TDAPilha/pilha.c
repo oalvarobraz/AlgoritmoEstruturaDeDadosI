@@ -21,8 +21,6 @@ void Imprimir(TPilha *Pilha){
     }
 }
 
-
-
 TProduto Pesquisar(TProduto Item, TPilha *Pilha){
     TPilha P1;
     FPVazia(&P1);
@@ -31,6 +29,8 @@ TProduto Pesquisar(TProduto Item, TPilha *Pilha){
         Desempilhar(Pilha,&y);
         if(y.codigo == Item.codigo)
             x.codigo = Item.codigo;
+        else
+            x.codigo = -1;
         Empilhar(y,&P1);
     }
     while(!Vazia(*P1)){
@@ -39,3 +39,4 @@ TProduto Pesquisar(TProduto Item, TPilha *Pilha){
     }
     return x;
 }
+
