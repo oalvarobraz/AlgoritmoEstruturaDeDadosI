@@ -14,7 +14,7 @@ void FFVazia (TFila *Fila)
 
 int Vazia(TFila Fila)
 {
-    return (Fila.tras == Fila.frente);
+    return (Fila.frente == Fila.tras);
 }
 
 int Tamanho(TFila Fila)
@@ -31,47 +31,39 @@ void Enfileirar (TProduto x, TFila *Fila)
     Fila->tamanho++;
 }
 
-void Desenfileirar (TFila *Fila, TProduto *Item)
+void Desenfileirar (TFila *Fila, TProduto *x)
 {
     if(!Vazia(*Fila))
     {
         TCelula *Aux;
         Aux = Fila->frente->prox;
         Fila->frente->prox = Aux->prox;
-        *Item = Aux->item;
+        *x = Aux->item;
         free(Aux);
         if (Fila->frente->prox == NULL)
-        {
-            Fila->tras = Fila->frente; // Tratamento de excessao
-        }
+            Fila->tras = Fila->frente;
         Fila->tamanho--;
-    } else {
-        Item->codigo = -1;
-    }
+    } else
+        x->codigo = -1;
 }
 
 void LerProduto(TProduto *x)
 {
-    printf("->Digite codigo do produto: ");
-    //__fpurge(stdin);
+    printf("-> Digite codigo do produto: ");
     fflush(stdin);
     scanf("%d", &x->codigo);
 
-    printf("->Digite o nome do produto: ");
-    //__fpurge(stdin);
+    printf("-> Digite o nome do produto: ");
     fflush(stdin);
     fgets(x->nome,100,stdin);
 
-    printf("->Digite a quantidade: ");
-    //__fpurge(stdin);
+    printf("-> Digite a quantidade: ");
     fflush(stdin);
     scanf("%d", &x->quantidade);
 
-    printf("->Digite o preco: ");
-    //__fpurge(stdin);
+    printf("-> Digite o preco: ");
     fflush(stdin);
     scanf("%d", &x->preco);
-    printf("\n");
 }
 
 void ImprimirProduto(TProduto x)
@@ -124,15 +116,15 @@ void Imprimir2 (TFila *Fila)
     }
 }
 
-TProduto Pesquisar (TFila *Fila1, TProduto Item) {
-    TProduto x, Aux;
+TProduto Pesquisar (TFila *Fila1, TProduto x) {
     int n = Tamanho(*Fila1);
+    TProduto y, aux;
     while (n != 0) {
         Desenfileirar(Fila1, &x);
-        if(x.codigo == Item.codigo)
-            Aux.codigo = Item.codigo;
-        Enfileirar (x, Fila1);
+        if(y.codigo == x.codigo)
+            aux.codigo = x.codigo;
+        Enfileirar (y, Fila1);
         n--;
     }
-    return Aux;
+    return aux;
 }
