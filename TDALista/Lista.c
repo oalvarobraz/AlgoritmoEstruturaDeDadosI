@@ -145,7 +145,7 @@ void Liberar(TLista *Lista)
     free(Lista->primeiro);*/
     
     
-    while(!Vazia(*Lista){
+    while(!Vazia(*Lista)){
         Excluir(Lista, &Lista->primeiro->prox->item);
     }
     free(Lista->primeiro);
