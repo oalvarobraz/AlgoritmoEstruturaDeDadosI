@@ -1,3 +1,18 @@
+//1
+void Liberar (TFila *Fila)
+{
+    TProduto item;
+    while (!Vazia(*Fila))
+    {
+        Desenfileirar(Fila, &item);
+    }
+    free(Fila->frente);
+}
+
+//2
+
+
+//3
 void ExcluirItemSelecionado (TFila *Fila1, int i) {
 
     if(i<=0){
@@ -22,3 +37,6 @@ void ExcluirItemSelecionado (TFila *Fila1, int i) {
         free(FilaAux.frente);
     }
 }
+
+
+//4
