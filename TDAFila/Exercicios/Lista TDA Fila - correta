@@ -1,0 +1,24 @@
+void ExcluirItemSelecionado (TFila *Fila1, int i) {
+
+    if(i<=0){
+        printf("\n|| ERRO || Incapaz de excluir a celula cabeça!\n");
+    }else if( i > GetTamanho(*Fila1)){
+        printf("\n|| ERRO || A Fila nao possuo %d celulas", i);
+    }else{
+        TFila FilaAux;
+        TProduto x;
+        int j=1;
+        FFVazia(&FilaAux);
+        while(!Vazia(*Fila1)){
+            Desenfileirar(Fila1, &x);
+            if(j != i)
+                Enfileirar(x,&FilaAux);
+            j++;
+        }
+        while(!Vazia(FilaAux)){
+            Desenfileirar(&FilaAux,&x);
+            Enfileirar(x,Fila1);
+        }
+        free(FilaAux.frente);
+    }
+}
