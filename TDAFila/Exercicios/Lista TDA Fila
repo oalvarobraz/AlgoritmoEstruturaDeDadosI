@@ -1,0 +1,102 @@
+void Liberar (TFila *Fila)
+{
+    TProduto item;
+    while (!Vazia(*Fila))
+    {
+        Desenfileirar(Fila, &item);
+    }
+    free(Fila->frente);
+}
+
+int EhIgual(TFila *Fila, TFila *Fila1)
+{
+    if(!Vazia(*Fila))
+    {
+        if(GetTamanho(*Fila) == GetTamanho(*Fila1))
+        {
+            TProduto x,y;
+            int n = GetTamanho(*Fila);
+            int igualdade = 0;
+            while(n!=0)
+            {
+                int m = GetTamanho(*Fila1);
+                Desenfileirar(Fila,&x);
+                while(m!=0)
+                {
+                    Desenfileirar(Fila1,&y);
+                    if(x.codigo == y.codigo)
+                    {
+                        igualdade++;
+                        Enfileirar(y,Fila1);
+                        break;
+                    }
+                    Enfileirar(y,Fila1);
+                    m--;
+                }
+                Enfileirar(x,Fila);
+                n--;
+            }
+            if(igualdade == GetTamanho(*Fila))
+                return 1;
+        }
+        else
+            return 0;
+    }
+    else
+        return -1;
+}
+
+
+void ExcluirItemSelecionado(TFila *Fila, int i)
+{
+
+    if(i == 0)
+    {
+        printf("|| ERRO: Nao eh permitido excluir a cabeca!\n");
+    }
+    else if(i< GetTamanho(*Fila))
+    {
+        TCelula *Aux;
+        Aux = Fila->frente;
+        int j=1;
+        while(Aux->prox != NULL)
+        {
+            if(j==i)
+            {
+                Desenfileirar(Fila,&Aux->prox->item);
+                return;
+            }
+            j++;
+            Aux = Aux->prox;
+        }
+
+    }
+    else
+        printf("\n|| INCAPAZ DE EXLUIR!\n-> A lista nao posuui %d celulas!\n", i);
+}
+
+void Intersecao(TFila *Fila, TFila *Fila1, TFila *Fila3)
+{
+
+    TProduto x,y;
+    int n = GetTamanho(*Fila);
+    while(n!=0)
+    {
+        int m = GetTamanho(*Fila1);
+        Desenfileirar(Fila,&x);
+        while(m!=0)
+        {
+            Desenfileirar(Fila1,&y);
+            if(x.codigo == y.codigo)
+            {
+                Enfileirar(y,Fila3);
+                Enfileirar(y,Fila1);
+                break;
+            }
+            Enfileirar(y,Fila1);
+            m--;
+        }
+        Enfileirar(x,Fila);
+        n--;
+    }
+}
