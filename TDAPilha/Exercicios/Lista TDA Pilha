@@ -1,1 +1,29 @@
+void Inverter(TPilha *Pilha){
+    if(!Vazia(*Pilha)){
+        TPilha P1,P2;
+        FPVazia(&P1);
+        FPVazia(&P2);
+        TProduto x;
+        while(!Vazia(*Pilha)){
+
+            Desempilhar(Pilha,&x);
+            Empilhar(x,&P1);
+
+        }
+        while(!Vazia(P1)){
+
+            Desempilhar(&P1,&x);
+            Empilhar(x,&P2);
+
+        }
+        while(!Vazia(P2)){
+
+            Desempilhar(&P2,&x);
+            Empilhar(x,Pilha);
+
+        }
+        free(P1.topo);
+        free(P2.topo);
+    }
+}
 
