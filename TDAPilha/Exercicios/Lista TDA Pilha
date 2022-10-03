@@ -1,3 +1,4 @@
+// 1a
 void Inverter(TPilha *Pilha){
     if(!Vazia(*Pilha)){
         TPilha P1,P2;
@@ -27,3 +28,20 @@ void Inverter(TPilha *Pilha){
     }
 }
 
+
+//1b
+void Inverter2(TPilha *Pilha){
+    if(!Vazia(*Pilha)){
+        TFila F1;
+        TProduto x;
+        while(!Vazia(*Pilha)){
+            Desempilhar(Pilha,&x);
+            Enfileirar(x,&F1);
+        }
+        while(!Vazia(F1)){
+            Desenfileirar(&F1,&x);
+            Empilhar(x,Pilha);
+        }
+        free(F1.frente);
+    }
+}
