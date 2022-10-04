@@ -47,8 +47,7 @@ void Inverter2(TPilha *Pilha){
 }
 
 
-//1c
-
+//1c - UTILIZANDO UMA PILHA AUXILIAR E UMA FILA
 
 void Inverter3(TPilha *Pilha){
     if(!Vazia(*Pilha)){
@@ -78,8 +77,41 @@ void Inverter3(TPilha *Pilha){
     }
 }
 
+1-c //UTILIZANDO SOMENTE UMA PILHA AUXILIAR
 
-//2
+void Inverte (TPilha *Pilha1) {
+    int n = Tamanho(*Pilha1);
+    TPilha Pilha2;
+    FPVazia(&Pilha2);
+    TProduto Aux;
+    TProduto x;
+    int i = 0;
+    while(n != 0) {
+        while(i < n-1) {
+            Pop(Pilha1, &x);
+            Push(&Pilha2, x);
+            i++;
+        }
+        Pop(Pilha1, &Aux);
+        i = 0;
+        while(i < n-1) {
+            Pop(&Pilha2, &x);
+            Push(Pilha1, x);
+            i++;
+        }
+        Push(&Pilha2, Aux);
+        n--;
+        i = 0;
+    }
+
+    while(!Vazia(Pilha2)) {
+        Pop(&Pilha2, &x);
+        Push(Pilha1, x);
+    }
+}
+
+
+//2 - UTILIZANDO DUAS FILAS AUXILIARES
 
 void Transfere(TPilha *Pilha1, TPilha *Pilha2){
     TFila F1, F2;
