@@ -44,7 +44,7 @@ void Desempilhar(TPilha *Pilha, TProduto *item){
 
 void LerProduto(TProduto *x)
 {
-    printf("|| Informe um codigo: ");
+    printf("\n|| Informe um codigo: ");
     fflush(stdin);
     scanf("%d", &x->codigo);
 
