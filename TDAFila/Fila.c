@@ -112,13 +112,42 @@ TProduto Pesquisar (TFila *Fila1, TProduto Item) {
     while (n != 0) {
         Desenfileirar(Fila1, &x);
         if(x.codigo == Item.codigo)
-            Aux.codigo = Item.codigo;
+            Aux = Item;
+            //Aux.codigo = Item.codigo;
         //else
            //Aux.codigo = -1;
         Enfileirar (x, Fila1);
         n--;
     }
-    return Item;
+    return Aux;
+}
+
+
+TProduto Pesquisar3(TFila *F1, TProduto x){
+    TFila F2;
+    FFVazia(&F2);
+    TProduto y, z;
+    int flag = 0;
+    while(!Vazia(*F1)){
+        Desenfileirar(F1,&y);
+        Enfileirar(y,&F2);
+        if(y.codigo == x.codigo){
+            flag = 1;
+            z=y;
+        }
+    }
+    //Devolvendo F2 para F1
+    while(!Vazia(F2)){
+        Desenfileirar(&F2,&y);
+        Enfileirar(y,F1);
+    }
+    if(flag == 1)
+        return z;
+    else{
+        z.codigo = -1;
+        return z;
+    }
+    
 }
 
 
