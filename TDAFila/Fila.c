@@ -107,13 +107,14 @@ void Imprimir (TFila *Fila)
 
 TProduto Pesquisar (TFila *Fila1, TProduto Item) {
     TProduto x, Aux;
+    Aux.codigo = -1;
     int n = GetTamanho(*Fila1);
     while (n != 0) {
         Desenfileirar(Fila1, &x);
         if(x.codigo == Item.codigo)
             Aux.codigo = Item.codigo;
-        else
-            Aux.codigo = -1;
+        //else
+           //Aux.codigo = -1;
         Enfileirar (x, Fila1);
         n--;
     }
