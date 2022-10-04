@@ -118,7 +118,7 @@ TProduto Pesquisar (TFila *Fila1, TProduto Item) {
         Enfileirar (x, Fila1);
         n--;
     }
-    return Aux;
+    return Item;
 }
 
 
