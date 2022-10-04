@@ -77,3 +77,32 @@ void Inverter3(TPilha *Pilha){
         free(F1.frente);
     }
 }
+
+
+//2
+
+void Transfere(TPilha *Pilha1, TPilha *Pilha2){
+    TFila F1, F2;
+    FFVazia(&F1);
+    FFVazia(&F2);
+    TProduto x;
+    while(!Vazia(*Pilha1)){
+        Desempilhar(Pilha1,&x);
+        Enfileirar(x,&F1);
+    }
+    while(!VaziaFila(F1)){
+        Desenfileirar(&F1,&x);
+        Empilhar(x,Pilha1);
+    }
+    while(!Vazia(*Pilha1)){
+        Desempilhar(Pilha1,&x);
+        Empilhar(x,Pilha2);
+        Enfileirar(x,&F2);
+    }
+    while(!VaziaFila(F2)){
+        Desenfileirar(&F2,&x);
+        Empilhar(x,Pilha1);
+    }
+    free(F1.frente);
+    free(F2.frente);
+}
