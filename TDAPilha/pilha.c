@@ -90,23 +90,24 @@ void Imprimir(TPilha *Pilha){
         Desempilhar(&P1,&x);
         Empilhar(x,Pilha);
     }
+    free(P1.topo);
 }
 
 TProduto Pesquisar(TProduto Item, TPilha *Pilha){
     TPilha P1;
     FPVazia(&P1);
     TProduto y,x;
+    x.codigo=-1;
     while(!Vazia(*Pilha)){
         Desempilhar(Pilha,&y);
         if(y.codigo == Item.codigo)
             x.codigo = Item.codigo;
-        else
-            x.codigo = -1;
         Empilhar(y,&P1);
     }
     while(!Vazia(P1)){
         Desempilhar(&P1,&y);
         Empilhar(y,Pilha);
     }
+    free(P1.topo);
     return x;
 }
