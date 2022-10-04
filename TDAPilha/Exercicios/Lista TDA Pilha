@@ -106,3 +106,34 @@ void Transfere(TPilha *Pilha1, TPilha *Pilha2){
     free(F1.frente);
     free(F2.frente);
 }
+
+
+
+//3
+
+NaoSeiQualTipo ExpressaoAritmetica(char *str){
+    TPilha P1;
+    FPVazia(&P1);
+    TCharacter c;
+    int i = 0;
+    while(*(str + i) != '\0'){
+        if(*(str + i) == '{' || *(str + i) == '[' || *(str + i) == '(')
+            Empilha(&P1, *(str + i));
+        
+        if(*(str + i) == '}') {
+            if(P1.topo == '{')
+                Desempilha(c, &P1);
+        }
+        
+        if(*(str + i) == ']') {
+            if(P1.topo == '[')
+                Desempilha(c, &P1);
+        }
+        
+        if(*(str + i) == ')') {
+            if(P1.topo == '(')
+                Desempilha(c, &P1);
+        }
+        i++;
+    }
+ }
