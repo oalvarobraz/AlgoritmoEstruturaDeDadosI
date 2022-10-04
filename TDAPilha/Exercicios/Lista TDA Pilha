@@ -111,7 +111,7 @@ void Transfere(TPilha *Pilha1, TPilha *Pilha2){
 
 //3
 
-NaoSeiQualTipo ExpressaoAritmetica(char *str){
+int ExpressaoAritmetica(char *str){
     TPilha P1;
     FPVazia(&P1);
     TCharacter c;
@@ -136,4 +136,9 @@ NaoSeiQualTipo ExpressaoAritmetica(char *str){
         }
         i++;
     }
+    
+    if(Vazia(P1))
+        return 1;
+    else
+        return 0;
  }
