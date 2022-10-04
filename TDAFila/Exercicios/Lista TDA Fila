@@ -46,7 +46,7 @@ int EhIgual(TFila *Fila, TFila *Fila1)
         return -1;
 }
 
-
+// Super errado o codigo de baixo, não estou obdecendo o FIFO, First In First Out
 void ExcluirItemSelecionado(TFila *Fila, int i)
 {
 
