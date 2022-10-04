@@ -79,7 +79,7 @@ void Inverter3(TPilha *Pilha){
 
 1-c //UTILIZANDO SOMENTE UMA PILHA AUXILIAR
 
-void Inverte (TPilha *Pilha1) {
+void Inverte3 (TPilha *Pilha1) {
     int n = Tamanho(*Pilha1);
     TPilha Pilha2;
     FPVazia(&Pilha2);
@@ -87,26 +87,27 @@ void Inverte (TPilha *Pilha1) {
     TProduto x;
     int i = 0;
     while(n != 0) {
-        while(i < n-1) {
-            Pop(Pilha1, &x);
-            Push(&Pilha2, x);
+        while(i < n-1) { // Vai desempilhar(tirar) somente n-1 um termos de Pilha1, e ira empilhar esse n-1 termos em Pilha2
+            Desempilhar(Pilha1, &x);
+            Empilhar(&Pilha2, x);
             i++;
         }
-        Pop(Pilha1, &Aux);
+        Pop(Pilha1, &Aux); // O ultimo termo que sobrou em Pilha1 vai ser desempilhado de Pilha1 e Aux ira receber seu valor
         i = 0;
-        while(i < n-1) {
-            Pop(&Pilha2, &x);
-            Push(Pilha1, x);
+        while(i < n-1) { // Vai desempilhar(tirar) n-1 termos de Pilha2, sendo n-1 o tamanho da Pilha2, logo esta desempilhando todos os termos de Pilha2, 
+        // e ira empilhar eles em Pilha1
+            Desempilhar(&Pilha2, &x);
+            Empilhar(Pilha1, x);
             i++;
         }
-        Push(&Pilha2, Aux);
+        Empilhar(&Pilha2, Aux); // Empilhando Aux em Pilha2
         n--;
         i = 0;
     }
 
-    while(!Vazia(Pilha2)) {
-        Pop(&Pilha2, &x);
-        Push(Pilha1, x);
+    while(!Vazia(Pilha2)) { //Desempilhando Pilha2 e Empilhando em Pilha1, logo, fazendo a Pilha1 receber o inverso da pilha
+        Desempilhar(&Pilha2, &x);
+        Empilhar(Pilha1, x);
     }
 }
 
