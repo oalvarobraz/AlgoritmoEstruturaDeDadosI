@@ -104,7 +104,8 @@ void Inverte3 (TPilha *Pilha1) {
         n--;
         i = 0;
     }
-
+    // Ao final desse laço Pilha2 ira ser igual a Pilha1
+    // Com isso iremos ter que inverter
     while(!Vazia(Pilha2)) { //Desempilhando Pilha2 e Empilhando em Pilha1, logo, fazendo a Pilha1 receber o inverso da pilha
         Desempilhar(&Pilha2, &x);
         Empilhar(Pilha1, x);
@@ -121,23 +122,52 @@ void Transfere(TPilha *Pilha1, TPilha *Pilha2){
     TProduto x;
     while(!Vazia(*Pilha1)){
         Desempilhar(Pilha1,&x);
-        Enfileirar(x,&F1);
+        Enfileirar(x,&F1); // Enfileirando os termos da Pilha1
     }
     while(!VaziaFila(F1)){
-        Desenfileirar(&F1,&x);
-        Empilhar(x,Pilha1);
+        Desenfileirar(&F1,&x); 
+        Empilhar(x,Pilha1); // Empilhando os termos na ordem inversa de Pilha1 inicial em Pilha1
     }
-    while(!Vazia(*Pilha1)){
-        Desempilhar(Pilha1,&x);
-        Empilhar(x,Pilha2);
-        Enfileirar(x,&F2);
+    while(!Vazia(*Pilha1)){ 
+        Desempilhar(Pilha1,&x); 
+        Empilhar(x,Pilha2); // Empilhando os termos na ordem de Pilha1 inicial em Pilha2
+        Enfileirar(x,&F2); // Enfileirando os termos inversos em F2
     }
     while(!VaziaFila(F2)){
-        Desenfileirar(&F2,&x);
-        Empilhar(x,Pilha1);
+        Desenfileirar(&F2,&x); 
+        Empilhar(x,Pilha1); // Empilhando os termos na ordem de Pilha1 inicial em Pilha1
     }
-    free(F1.frente);
-    free(F2.frente);
+    free(F1.frente); //Liberando as Filas
+    free(F2.frente); 
+}
+
+
+//2 - UTILIZANDO SOMENTE UMA PILHA AUXILIAR
+
+void Transfere(TPilha *Pilha1, TPilha *Pilha2){
+    int n = Tamanho(*Pilha1);
+    TProduto Aux;
+    TProduto x;
+    int i = 0;
+    while(n != 0) {
+        while(i < n-1) { // Vai desempilhar(tirar) somente n-1 um termos de Pilha1, e ira empilhar esse n-1 termos em Pilha2
+            Desempilhar(Pilha1, &x);
+            Empilhar(Pilha2, x);
+            i++;
+        }
+        Pop(Pilha1, &Aux); // O ultimo termo que sobrou em Pilha1 vai ser desempilhado de Pilha1 e Aux ira receber seu valor
+        i = 0;
+        while(i < n-1) { // Vai desempilhar(tirar) n-1 termos de Pilha2, sendo n-1 o tamanho da Pilha2, logo esta desempilhando todos os termos de Pilha2, 
+        // e ira empilhar eles em Pilha1
+            Desempilhar(Pilha2, &x);
+            Empilhar(Pilha1, x);
+            i++;
+        }
+        Empilhar(Pilha2, Aux); // Empilhando Aux em Pilha2
+        n--;
+        i = 0;
+    }
+    // Ao final desse laço Pilha2 ira ser igual a Pilha1
 }
 
 
