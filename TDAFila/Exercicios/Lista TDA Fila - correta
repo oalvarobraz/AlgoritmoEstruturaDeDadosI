@@ -132,8 +132,6 @@ void Intersecao2(TFila *Fila, TFila *Fila1, TFila *Fila3)
             if(x.codigo == y.codigo)
             {
                 Enfileirar(y,Fila3);
-                Enfileirar(y,Fila1);
-                break;
             }
             Enfileirar(y,Fila1);
             m--;
