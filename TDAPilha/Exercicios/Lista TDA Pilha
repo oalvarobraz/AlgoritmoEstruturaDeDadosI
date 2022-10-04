@@ -49,6 +49,7 @@ void Inverter2(TPilha *Pilha){
 
 //1c
 
+
 void Inverter3(TPilha *Pilha){
     if(!Vazia(*Pilha)){
         TPilha P1;
@@ -66,7 +67,7 @@ void Inverter3(TPilha *Pilha){
         }
         while(!Vazia1(F1)){
             Desenfileirar(&F1,&x);
-            Enfileirar(x,&P1);
+            Empilhar(x,&P1);
         }
         while(!Vazia(P1)){
             Desempilhar(&P1,&x);
