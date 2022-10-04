@@ -27,8 +27,8 @@ int EhIgual(TFila *Fila, TFila *Fila1)
                     if(x.codigo == y.codigo)
                     {
                         igualdade++;
-                        Enfileirar(y,Fila1);
-                        break;
+                        //Enfileirar(y,Fila1);
+                        //break;
                     }
                     Enfileirar(y,Fila1);
                     m--;
