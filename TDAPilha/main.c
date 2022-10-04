@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "pilha.h"
+#include "interface.h"
 
 int main()
 {
