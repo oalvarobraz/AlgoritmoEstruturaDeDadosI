@@ -45,3 +45,34 @@ void Inverter2(TPilha *Pilha){
         free(F1.frente);
     }
 }
+
+
+//1c
+
+void Inverter3(TPilha *Pilha){
+    if(!Vazia(*Pilha)){
+        TPilha P1;
+        FPVazia(&P1);
+        TFila F1;
+        FFVazia(&F1);
+        TProduto x;
+        while(!Vazia(*Pilha)){
+            Desempilhar(Pilha,&x);
+            Empilhar(x,&P1);
+        }
+        while(!Vazia(P1)){
+            Desempilhar(&P1,&x);
+            Enfileirar(x,&F1);
+        }
+        while(!Vazia1(F1)){
+            Desenfileirar(&F1,&x);
+            Enfileirar(x,&P1);
+        }
+        while(!Vazia(P1)){
+            Desempilhar(&P1,&x);
+            Empilhar(x,Pilha);
+        }
+        free(P1.topo);
+        free(F1.frente);
+    }
+}
