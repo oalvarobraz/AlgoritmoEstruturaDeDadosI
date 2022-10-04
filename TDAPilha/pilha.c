@@ -30,6 +30,7 @@ void Empilhar(TProduto x, TPilha *Pilha){
 void Desempilhar(TPilha *Pilha, TProduto *item){
     if(Vazia(*Pilha)){
         printf("\n|| ERRO || Pilha Vazia!");
+        item->codigo = -1;
         return;
     }else{
         TCelula *Aux;
