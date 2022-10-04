@@ -175,33 +175,51 @@ void Transfere(TPilha *Pilha1, TPilha *Pilha2){
 //3
 
 int ExpressaoAritmetica(char *str){
-    TPilha P1;
-    FPVazia(&P1);
-    TCharacter c;
+    TPilhaCaracter P1;
+    FPCVazia(&P1);
+    char c;
     int i = 0;
-    while(*(str + i) != '\0'){
-        if(*(str + i) == '{' || *(str + i) == '[' || *(str + i) == '(')
-            Empilha(&P1, *(str + i));
-        
+    while(*(str+i)!='\0'){
+        if(*(str+i) == '(' || *(str+i)=='[' || *(str+i)=='{'){
+            EmpilharPC(*(str+i),&P1);
+        }
+
         if(*(str + i) == '}') {
-            if(P1.topo == '{')
-                Desempilha(c, &P1);
+            int n = GetTamanhoPC(P1);
+            while(n!=0){
+                DesempilharPC(&P1,&c);
+                if(c != '{'){
+                    EmpilharPC(c,&P1);
+                }
+                n--;
+            }
         }
-        
+
         if(*(str + i) == ']') {
-            if(P1.topo == '[')
-                Desempilha(c, &P1);
+            int n = GetTamanhoPC(P1);
+            while(n!=0){
+                DesempilharPC(&P1,&c);
+                if(c != '['){
+                    EmpilharPC(c,&P1);
+                }
+                n--;
+            }
         }
-        
+
         if(*(str + i) == ')') {
-            if(P1.topo == '(')
-                Desempilha(c, &P1);
+            int n = GetTamanhoPC(P1);
+            while(n!=0){
+                DesempilharPC(&P1,&c);
+                if(c != '('){
+                    EmpilharPC(c,&P1);
+                }
+                n--;
+            }
         }
         i++;
     }
-    
-    if(Vazia(P1))
+    if(VaziaPilhaCaracter(P1))
         return 1;
     else
         return 0;
- }
+}
