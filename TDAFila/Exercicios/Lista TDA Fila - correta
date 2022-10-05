@@ -153,16 +153,20 @@ void ExcluirItemSelecionado (TFila *Fila1, int i)
 
 //3
 
-void ExcluirItem(TFila *Fila, int i){
-    TProduto x;
-    int j = 1;
-    int n = GetTamanho(*Fila);
-    while(n!=0){
+void RemoverItemSelecionado(TFila *Fila, int i){
+    if(!Vazia(*Fila)){
+        int n = GetTamanho(*Fila);
+        int j=1;
+        TProduto x;
+        while(n!=0){
             Desenfileirar(Fila,&x);
-            if(j!=i)
+            if(j!=i){
                 Enfileirar(x,Fila);
+            }
             j++;
+            n--;
         }
+    }
 }
 
 
