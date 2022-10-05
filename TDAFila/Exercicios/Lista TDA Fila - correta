@@ -65,6 +65,57 @@ int EhIgual (TFila *Fila1, TFila *Fila2)
 }
 
 
+//2 - OLHANDO TODOS OS CASOS
+
+int EhIgual(TFila *Fila1, TFila *Fila2){
+    if(!Vazia(*Fila1) && !Vazia(*Fila2)){
+        if(GetTamanho(*Fila1) == GetTamanho(*Fila2)){
+            int n = GetTamanho(*Fila1);
+            TProduto x,y;
+            TFila F1aux,F2aux;
+            FFVazia(&F1aux);
+            FFVazia(&F2aux);
+            while(n!=0){
+                Desenfileirar(Fila1,&x);
+                Enfileirar(x,&F1aux);
+                Enfileirar(x,Fila1);
+                n--;
+            }
+            int m = GetTamanho(*Fila2);
+            while(m!=0){
+                Desenfileirar(Fila2,&x);
+                Enfileirar(x,&F2aux);
+                Enfileirar(x,Fila2);
+                m--;
+            }
+            n=GetTamanho(F1aux);
+            while(n!=0){
+                Desenfileirar(&F1aux,&x);
+                m=GetTamanho(F2aux);
+                while(m!=0){
+                    Desenfileirar(&F2aux,&y);
+                    if(x.codigo != y.codigo){
+                        Enfileirar(y,&F2aux);
+                    }else
+                         break;
+                    m--;
+                }
+                Enfileirar(x,&F1aux);
+                n--;
+            }
+            if(GetTamanho(F2aux)==0){
+                return 1;
+            }else
+                return 0;
+            Liberar(&F1aux);
+            Liberar(&F2aux);
+        }
+        return 0;
+    }
+    return 0;
+}
+
+
 //3
 void ExcluirItemSelecionado (TFila *Fila1, int i)
 {
