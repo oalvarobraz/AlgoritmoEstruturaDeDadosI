@@ -232,33 +232,26 @@ void Intersecao (TFila *Fila1, TFila *Fila2, TFila *Fila3) {
 }
 
 
-//5
+//5 ESSA TA IGUAL O QUE SE PEDE NA LISTA
 
 void Diferenca(TFila *Fila1,TFila *Fila2,TFila *Fila3){
     if(!Vazia(*Fila1) && !Vazia(*Fila2)){
-        TProduto x,y,z;
+        TProduto x,y,Aux;
         int n = GetTamanho(*Fila1);
-        int m,g;
-
+        int m;
         while(n!=0){
             Desenfileirar(Fila1,&x);
             m = GetTamanho(*Fila2);
+            Aux.codigo = -1;
             while(m!=0){
                 Desenfileirar(Fila2,&y);
-                g = GetTamanho(*Fila3);
-                if(x.codigo != y.codigo){
-                    while(g!=0){
-                        Desenfileirar(Fila3,&z);
-                        if(x.codigo != z.codigo){
-                            Enfileirar(x,Fila3);
-                        }
-                        Enfileirar(z,Fila3);
-                        g--;
-                    }
-                }
+                if(y.codigo == x.codigo)
+                    Aux.codigo = x.codigo;
                 Enfileirar(y,Fila2);
                 m--;
             }
+            if(Aux.codigo == -1)
+                Enfileirar(x,Fila3);
             Enfileirar(x,Fila1);
             n--;
         }
@@ -266,7 +259,7 @@ void Diferenca(TFila *Fila1,TFila *Fila2,TFila *Fila3){
 }
 
 
-//5
+//5  ENFILEIRA TAMBEM EM FILA3 A DIFERENCA ENTRE FILA2 E FILA1
 
 void Diferenca2(TFila *Fila1, TFila *Fila2, TFila *Fila3){
     if(!Vazia(*Fila1) && !Vazia(*Fila2)){
