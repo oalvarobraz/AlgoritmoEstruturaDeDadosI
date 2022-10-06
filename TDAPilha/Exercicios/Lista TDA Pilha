@@ -6,11 +6,13 @@ void Inverter(TPilha *Pilha){
         TProduto x,y;
         TPilha Paux;
         FPVazia(&Paux);
-        int i = 0;
+        int i=0;
+        int j=1;
         int n = GetTamanho(*Pilha);
-        while(n!=0){
+        while(j<=(n-1)){
             Desempilhar(Pilha,&y);
-            while(i<(n-1)){
+            i=0;
+            while(i<(n-j)){
                 Desempilhar(Pilha,&x);
                 Empilhar(x,&Paux);
                 i++;
@@ -20,13 +22,11 @@ void Inverter(TPilha *Pilha){
                 Desempilhar(&Paux,&x);
                 Empilhar(x,Pilha);
             }
-            n--;
+            j++;
+            //n--;
         }
     }
 }
-
-
-
 
 
 
