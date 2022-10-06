@@ -289,3 +289,21 @@ void Diferenca2(TFila *Fila1, TFila *Fila2, TFila *Fila3){
         }
     }
 }
+
+
+//5 ESSA TA IGUAL O QUE SE PEDE NA LISTA
+
+void Diferenca3(TFila *Fila1, TFila *Fila2, TFila *Fila3){
+    if(!Vazia(*Fila1) && !Vazia(*Fila2)){
+        TProduto x;
+        int m = GetTamanho(*Fila1);
+        while(m!=0){
+            Desenfileirar(Fila1,&x);
+            if(Pesquisar(Fila2,x).codigo == -1)
+                Enfileirar(x,Fila3);
+            Enfileirar(x,Fila1);
+            m--;
+        }
+
+    }
+}
