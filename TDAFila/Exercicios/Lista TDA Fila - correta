@@ -234,6 +234,40 @@ void Intersecao (TFila *Fila1, TFila *Fila2, TFila *Fila3) {
 
 //5
 
+void Diferenca(TFila *Fila1,TFila *Fila2,TFila *Fila3){
+    if(!Vazia(*Fila1) && !Vazia(*Fila2)){
+        TProduto x,y,z;
+        int n = GetTamanho(*Fila1);
+        int m,g;
+
+        while(n!=0){
+            Desenfileirar(Fila1,&x);
+            m = GetTamanho(*Fila2);
+            while(m!=0){
+                Desenfileirar(Fila2,&y);
+                g = GetTamanho(*Fila3);
+                if(x.codigo != y.codigo){
+                    while(g!=0){
+                        Desenfileirar(Fila3,&z);
+                        if(x.codigo != z.codigo){
+                            Enfileirar(x,Fila3);
+                        }
+                        Enfileirar(z,Fila3);
+                        g--;
+                    }
+                }
+                Enfileirar(y,Fila2);
+                m--;
+            }
+            Enfileirar(x,Fila1);
+            n--;
+        }
+    }
+}
+
+
+//5
+
 void Diferenca2(TFila *Fila1, TFila *Fila2, TFila *Fila3){
     if(!Vazia(*Fila1) && !Vazia(*Fila2)){
         TProduto x;
