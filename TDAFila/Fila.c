@@ -159,7 +159,7 @@ TProduto Pesquisar2(TFila *Fila, TProduto x){
         Aux = Fila->frente->prox;
         Desenfileirar(Fila, &y);
         if(Aux->item.codigo == x.codigo){
-            y.codigo == x.codigo;
+            y.codigo = x.codigo;
         }
         Enfileirar(y,Fila);
         n--;
