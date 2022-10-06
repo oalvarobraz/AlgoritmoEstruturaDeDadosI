@@ -1,3 +1,38 @@
+//1-c
+
+
+void Inverter(TPilha *Pilha){
+    if(!Vazia(*Pilha)){
+        TProduto x,y;
+        TPilha Paux;
+        FPVazia(&Paux);
+        int i = 0;
+        int n = GetTamanho(*Pilha);
+        while(n!=0){
+            Desempilhar(Pilha,&y);
+            while(i<(n-1)){
+                Desempilhar(Pilha,&x);
+                Empilhar(x,&Paux);
+                i++;
+            }
+            Empilhar(y,Pilha);
+            while(!Vazia(Paux)){
+                Desempilhar(&Paux,&x);
+                Empilhar(x,Pilha);
+            }
+            n--;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 // 1a
 void Inverter(TPilha *Pilha){
     if(!Vazia(*Pilha)){
