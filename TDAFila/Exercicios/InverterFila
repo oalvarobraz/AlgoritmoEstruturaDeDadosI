@@ -1,0 +1,27 @@
+void InverterFila(TFila *Fila){
+    if(!Vazia(*Fila)){
+        TProduto x,y;
+        TFila Faux;
+        FFVazia(&Faux);
+        int n,m;
+        int i = 0;
+        m = GetTamanho(*Fila);
+        while(!Vazia(*Fila)){
+            Desenfileirar(Fila,&x);
+            Enfileirar(x,&Faux);
+        }
+        n = GetTamanho(Faux);
+        while(i<=(m-1)){
+            n = GetTamanho(Faux);
+            while(n!=0){
+                Desenfileirar(&Faux,&y);
+                if(n!=1){
+                    Enfileirar(y,&Faux);
+                }
+                n--;
+            }
+            Enfileirar(y,Fila);
+            i++;
+        }
+    }
+}
