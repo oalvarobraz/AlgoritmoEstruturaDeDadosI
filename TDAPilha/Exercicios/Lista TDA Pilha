@@ -4,27 +4,27 @@
 void Inverter(TPilha *Pilha){
     if(!Vazia(*Pilha)){
         TProduto x,y;
-        TPilha Paux;
-        FPVazia(&Paux);
-        int i=0;
-        int j=1;
+        TPilha P2;
+        FPVazia(&P2);
+        int i = 0;
+        int j = 1;
         int n = GetTamanho(*Pilha);
         while(j<=(n-1)){
-            Desempilhar(Pilha,&y);
             i=0;
+            Desempilhar(Pilha,&y);
             while(i<(n-j)){
                 Desempilhar(Pilha,&x);
-                Empilhar(x,&Paux);
+                Empilhar(x,&P2);
                 i++;
             }
             Empilhar(y,Pilha);
-            while(!Vazia(Paux)){
-                Desempilhar(&Paux,&x);
+            while(!Vazia(P2)){
+                Desempilhar(&P2,&x);
                 Empilhar(x,Pilha);
             }
             j++;
-            //n--;
         }
+        free(P2.topo);
     }
 }
 
