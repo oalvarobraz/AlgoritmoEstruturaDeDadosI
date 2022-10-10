@@ -1,0 +1,32 @@
+void InverterLista(TLista *Lista){
+    if(!Vazia(*Lista)){
+        TCelula *Aux,*Aux2;
+        TLista ListaAux;
+        FLVazia(&ListaAux);
+        int i = 1;
+        Aux = Lista->primeiro;
+        int n = GetTamanho(*Lista);
+        while(n!=0){
+            Aux = Lista->primeiro;
+            i=0;
+            while(Aux->prox !=NULL){
+                if(Aux->prox->prox == NULL){
+                    Aux2 = Aux;
+                }else
+                    i++;
+                Aux = Aux->prox;
+            }
+            if(i!=0){
+                Inserir(Aux2->item,&ListaAux);
+                RemoverProdutoSelecionado(Lista,i);
+            }
+            n--;
+        }
+        //Imprimir(ListaAux);
+        Aux = ListaAux.primeiro;
+        while(Aux->prox!=NULL){
+            Inserir(Aux->prox->item,Lista);
+            Aux = Aux->prox;
+        }
+    }
+}
