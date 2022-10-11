@@ -1,0 +1,29 @@
+void OrdenarLista(TLista *Lista){
+    if(!Vazia(*Lista)){
+        TCelula *Aux1,*Aux2;
+        TCelula Aux3;
+        int n = GetTamanho(*Lista);
+        int i = 0;
+        while(n!=0){
+            i=0;
+            Aux1 = Lista->primeiro->prox;
+            Aux2 = Lista->primeiro->prox->prox;
+            while(i<(n-1)){
+                if(Aux1->item.codigo < Aux2->item.codigo){
+                    Aux3.item = Aux1->item;
+                    Aux1->item = Aux2->item;
+                    Aux2->item = Aux3.item;
+                    Aux1 = Aux1->prox;
+                    Aux2 = Aux2->prox;
+                }else{
+                    Aux1 = Aux1->prox;
+                    Aux2 = Aux2->prox;
+                }
+                i++;
+            }
+            n--;
+        }
+
+
+    }
+}
