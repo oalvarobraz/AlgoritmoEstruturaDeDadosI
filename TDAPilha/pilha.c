@@ -111,3 +111,25 @@ TProduto Pesquisar(TProduto Item, TPilha *Pilha){
     free(P1.topo);
     return x;
 }
+
+void OrganizarPilha(TPilha *Pilha){
+    if(!Vazia(*Pilha)){
+        TProduto x,y;
+        TPilha P1;
+        FPVazia(&P1);
+
+        while(!Vazia(*Pilha)){
+            Desempilhar(Pilha,&y);
+            while(!Vazia(P1) && P1.topo->prox->item.codigo > y.codigo){
+                Desempilhar(&P1,&x);
+                Empilhar(x,Pilha);
+            }
+            Empilhar(y,&P1);
+        }
+        while(!Vazia(P1)){
+            Desempilhar(&P1,&y);
+            Empilhar(y,Pilha);
+        }
+        free(P1.topo);
+    }
+}
