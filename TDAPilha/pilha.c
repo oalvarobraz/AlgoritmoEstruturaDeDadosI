@@ -133,3 +133,30 @@ void OrganizarPilha(TPilha *Pilha){
         free(P1.topo);
     }
 }
+
+void InverterPilha(TPilha *Pilha){
+    if(!Vazia(*Pilha)){
+        TProduto x,y;
+        TPilha P1;
+        FPVazia(&P1);
+        int j = 1;
+        int i=0;
+        int n = GetTamanho(*Pilha);
+        while(j<=(n-1)){
+            i=0;
+            Desempilhar(Pilha,&y);
+            while(i<(n-j)){
+                Desempilhar(Pilha,&x);
+                Empilhar(x,&P1);
+                i++;
+            }
+            Empilhar(y,Pilha);
+            while(!Vazia(P1)){
+                Desempilhar(&P1,&x);
+                Empilhar(x,Pilha);
+            }
+            j++;
+        }
+        free(P1.topo);
+    }
+}
